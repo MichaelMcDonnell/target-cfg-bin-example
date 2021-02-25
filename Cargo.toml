@@ -1,0 +1,21 @@
+# This is an example of how I would like Cargo to support target configurations
+# for binaries. It is currently not implemented. See the README.md for more
+# background.
+[package]
+name = "target-cfg-bin-example"
+version = "0.1.0"
+authors = ["Michael Mc Donnell <michael@mcdonnell.dk>"]
+edition = "2018"
+autobins = false
+
+# Use the standard `main.rs` for all operating systems except Android.
+[[target.'cfg(not(android))'.bin]]
+name = "target-cfg-bin-example"
+path = "src/main.rs"
+
+# Use the `main_android.rs` main file on Android
+[[target.'cfg(android)'.bin]]
+name = "target-cfg-bin-example"
+path = "src/main_android.rs"
+
+[dependencies]
