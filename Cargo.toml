@@ -3,19 +3,21 @@
 # background.
 [package]
 name = "target-cfg-bin-example"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Michael Mc Donnell <michael@mcdonnell.dk>"]
 edition = "2018"
 autobins = false
 
 # Use the standard `main.rs` for all operating systems except Android.
-[[target.'cfg(not(android))'.bin]]
+[[bin]]
 name = "target-cfg-bin-example"
 path = "src/main.rs"
+target = "cfg(not(android))"
 
 # Use the `main_android.rs` main file on Android
-[[target.'cfg(android)'.bin]]
+[[bin]]
 name = "target-cfg-bin-example"
 path = "src/main_android.rs"
+target = "cfg(android)"
 
 [dependencies]
